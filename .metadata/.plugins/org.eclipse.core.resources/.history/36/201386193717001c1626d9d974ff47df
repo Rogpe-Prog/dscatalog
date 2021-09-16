@@ -1,0 +1,5 @@
+package dev.heroes.dscatalog.entities;
+
+public class Category {
+
+}
