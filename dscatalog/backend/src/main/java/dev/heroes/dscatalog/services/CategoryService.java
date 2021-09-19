@@ -1,6 +1,7 @@
 package dev.heroes.dscatalog.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import dev.heroes.dscatalog.dto.CategoryDTO;
 import dev.heroes.dscatalog.entities.Category;
 import dev.heroes.dscatalog.repositories.CategoryRepository;
+import dev.heroes.dscatalog.services.exceptions.EntityNotFoundException;
 
 @Service
 public class CategoryService {
@@ -25,6 +27,13 @@ public class CategoryService {
 				.stream()
 				.map(x -> new CategoryDTO(x))
 				.collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = true)
+	public CategoryDTO findById(Long id) {
+		Optional<Category> obj = repository.findById(id);
+		Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+		return new CategoryDTO(entity);
 	}
 	
 }
