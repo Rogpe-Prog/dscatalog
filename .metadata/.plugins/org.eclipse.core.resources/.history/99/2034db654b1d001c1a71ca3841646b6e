@@ -1,0 +1,33 @@
+package dev.heroes.dscatalog.dto;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductDTO {
+
+	private Long id;
+	private String name;
+	private String description;
+	private Double prive;
+	private String img_url;
+	private Instant date;
+	
+	private List<CategoryDTO> categories = new ArrayList<>();
+	
+	public ProductDTO() {
+	}
+
+	public ProductDTO(Long id, String name, String description, Double prive, String img_url, Instant date) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.prive = prive;
+		this.img_url = img_url;
+		this.date = date;
+	}
+	
+	
+	
+	
+}
